@@ -1,26 +1,66 @@
 const axios = require('axios');
+const { Pokemon, Type } = require('./../db');
 
 const getPokemons = async() => {
-      let array=[]
       const pokemonsApi = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40&offset=0')
-      const aux = pokemonsApi.data.results
-      
-      for (let i = 0; i < aux.length; i++){
-          let aux2 = await axios.get(`${aux[i].url}`)
-          array.push(aux2.data) 
+      const urlPokemons = pokemonsApi.data.results
+      let dataPokemons=[]
+      for (let i = 0; i < urlPokemons.length; i++){
+          let aux = await axios.get(`${urlPokemons[i].url}`)
+          dataPokemons.push(aux.data) 
       }
-      let array2 = array.map(el => {
+      let pokemons = dataPokemons.map(pokemon => {
         return{
-          id: el.id,
-          name: el.name,
-          sprites: el.sprites.other['official-artwork']['front_default'],
-          types: el.types.map(type => type.type.name)
+          id: pokemon.id,
+          name: pokemon.name,
+          image: pokemon.sprites.other['official-artwork']['front_default'],
+          types: pokemon.types.map(type => type.type.name)
         }
       })
-      return array2;    
+      //throw Error('error voluntario')
+      const pokemonDb = await Pokemon.findAll({
+        attributes: ["id", "name", "image"],
+        include: {
+          model: Type,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        }
+      })
+
+      return [...pokemons,...pokemonDb];
 }
 
-module.exports = { getPokemons };
+// const getPokemonId = async() => {
+//   const 
+// }
+
+
+const createPokemons = async({name, hp, attack, defense, speed, height, weight, image, created, types}) => {
+  if(!name || !hp || !attack || !defense || !speed || !height || !weight || !image || !created || !types){
+    return "information required!";
+  }else{
+    const create = await Pokemon.create({
+        name,
+        hp,
+        attack,
+        defense,
+        speed,
+        height,
+        weight,
+        image,
+        created
+    })
+    let typeDb = await Type.findAll({
+      where: { name: types}
+    })
+    await create.addType(typeDb);
+    return create;
+  }
+}
+
+module.exports = { getPokemons, createPokemons, getPokemonId };
 
 /*
     console.log(pokemonsApi) => 
@@ -120,7 +160,4 @@ module.exports = { getPokemons };
         types: [ 'grass', 'poison' ]
       }
     ]
-
-    
-
 */
