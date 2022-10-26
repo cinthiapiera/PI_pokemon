@@ -14,7 +14,7 @@ const getPokemons = async() => {
           id: pokemon.id,
           name: pokemon.name,
           image: pokemon.sprites.other['official-artwork']['front_default'],
-          types: pokemon.types.map(type => type.type.name)
+          types: pokemon.types.map(type => { return {name: type.type.name}})
         }
       })
       //throw Error('error voluntario')
@@ -32,10 +32,40 @@ const getPokemons = async() => {
       return [...pokemons,...pokemonDb];
 }
 
-// const getPokemonId = async() => {
-//   const 
-// }
-
+const getPokemonId = async(id) => {
+    //limite de pokeapi = 905
+    if(id.length){
+      const pokemonsApiId = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
+      const pokemonId = pokemonsApiId.data
+      let pokemon = {
+        id: pokemonId.id,
+        name: pokemonId.name,
+        hp: pokemonId.stats[0].base_stat,
+        attack: pokemonId.stats[1].base_stat,
+        defense:pokemonId.stats[2].base_stat,
+        speed: pokemonId.stats[5].base_stat,
+        height: pokemonId.height,
+        weight: pokemonId.weight,
+        image: pokemonId.sprites.other['official-artwork']['front_default'],
+        types: pokemonId.types.map(type => { return {name: type.type.name}})
+      }
+      return pokemon;
+    }else{
+      let pokemonDb = await Pokemon.findOne({
+        where:{
+          id: id
+        },
+          include: {
+          model: Type,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        }
+      })
+      return pokemonDb
+    }
+}
 
 const createPokemons = async({name, hp, attack, defense, speed, height, weight, image, created, types}) => {
   if(!name || !hp || !attack || !defense || !speed || !height || !weight || !image || !created || !types){
