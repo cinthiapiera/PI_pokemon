@@ -1,27 +1,22 @@
 // const axios = require('axios')
-const { Type } = require('./../db.js')
+const { Type } = require('./../db.js');
 const typesApi = require('./../data/types.json');
 
-const getTypes = async() => {
+const getTypes = async () => {
 
-    const typesDb = await Type.findAll()
+  const typesDb = await Type.findAll();
+  if(!typesDb.length){
+    // const typesApi = await axios.get('https://pokeapi.co/api/v2/type')
+    // typesApi.data.results.map
+    const types = typesApi.results.map(type => {
+      return{ name: type.name }
+    })
+    await Type.bulkCreate(types);
+  }
+  return typesDb;
+};
 
-    if(typesDb.length === 0){
-      // const typesApi = await axios.get('https://pokeapi.co/api/v2/type')
-      // typesApi.data.results.map
-      const types = typesApi.results.map(type => {
-        return{
-          name: type.name
-        }
-      })
-      //types => [{ name: 'normal' },{ name: 'fighting' },...]
-      await Type.bulkCreate(types)
-    }
-    return typesDb;
-}
-
-module.exports = { getTypes }
-
+module.exports = { getTypes };
 
 // fetch('https://pokeapi.co/api/v2/type')
 //     .then((response) => response.json())

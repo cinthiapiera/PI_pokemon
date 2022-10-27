@@ -35,7 +35,6 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
-      // defaultValue: "https://ibb.co/bFjhHsh"
       validate: {
         isUrl: true
       }

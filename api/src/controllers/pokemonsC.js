@@ -34,7 +34,22 @@ const getPokemons = async() => {
 
 const getPokemonId = async(id) => {
     //limite de pokeapi = 905
-    if(id.length){
+    const regex = /([a-zA-Z]+([0-9]+[a-zA-Z]+)+)/
+    if(regex.test(id)){
+      let pokemonDb = await Pokemon.findOne({
+        where:{
+          id: id
+        },
+          include: {
+          model: Type,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        }
+      })
+      return pokemonDb;
+    }else{
       const pokemonsApiId = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)
       const pokemonId = pokemonsApiId.data
       let pokemon = {
@@ -50,26 +65,12 @@ const getPokemonId = async(id) => {
         types: pokemonId.types.map(type => { return {name: type.type.name}})
       }
       return pokemon;
-    }else{
-      let pokemonDb = await Pokemon.findOne({
-        where:{
-          id: id
-        },
-          include: {
-          model: Type,
-          attributes: ["name"],
-          through: {
-            attributes: [],
-          },
-        }
-      })
-      return pokemonDb
     }
 }
 
-const createPokemons = async({name, hp, attack, defense, speed, height, weight, image, created, types}) => {
+const createPokemon = async({name, hp, attack, defense, speed, height, weight, image, created, types}) => {
   if(!name || !hp || !attack || !defense || !speed || !height || !weight || !image || !created || !types){
-    return "information required!";
+    throw Error("Sending incomplete information!");
   }else{
     const create = await Pokemon.create({
         name,
@@ -86,108 +87,8 @@ const createPokemons = async({name, hp, attack, defense, speed, height, weight, 
       where: { name: types}
     })
     await create.addType(typeDb);
-    return create;
+    return {message: "Pokémon created successfully", create };
   }
 }
 
-module.exports = { getPokemons, createPokemons, getPokemonId };
-
-/*
-    console.log(pokemonsApi) => 
-    {  
-      data: {
-        count: 1154,
-        next: 'https://pokeapi.co/api/v2/pokemon?offset=2&limit=2',
-        previous: null,
-        results: [ [Object], [Object] ]
-      }
-    }
-
-    console.log(aux)
-    [
-      { name: 'bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/' },
-      { name: 'ivysaur', url: 'https://pokeapi.co/api/v2/pokemon/2/' }
-    ]
-
-    console.log(array)
-    [
-      {
-        abilities: [ [Object], [Object] ],
-        base_experience: 64,
-        forms: [ [Object] ],
-        game_indices: [
-          [Object], [Object], [Object],
-          [Object], [Object], [Object],
-          [Object], [Object], [Object],
-          [Object], [Object], [Object],
-          [Object], [Object], [Object],
-          [Object], [Object], [Object],
-          [Object], [Object]
-        ],
-        height: 7,
-        held_items: [],
-        id: 1,
-        is_default: true,
-        location_area_encounters: 'https://pokeapi.co/api/v2/pokemon/1/encounters',
-        moves: [
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object], [Object], [Object],
-          [Object], [Object], [Object]
-        ],
-        name: 'bulbasaur',
-        order: 1,
-        past_types: [],
-        species: {
-          name: 'bulbasaur',
-          url: 'https://pokeapi.co/api/v2/pokemon-species/1/'
-        },
-        sprites: {
-          back_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png',
-          back_female: null,
-          back_shiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png',
-          back_shiny_female: null,
-          front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-          front_female: null,
-          front_shiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png',
-          front_shiny_female: null,
-          other: [Object],
-          versions: [Object]
-        },
-        stats: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
-        types: [ [Object], [Object] ],
-        weight: 69
-      },
-      {},
-      {},...
-    ]
-
-    console.log(array2)
-    [
-      {
-        id: 1,
-        name: 'bulbasaur',
-        sprites: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png',
-        types: [ 'grass', 'poison' ]
-      },
-      {
-        id: 2,
-        name: 'ivysaur',
-        sprites: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png',
-        types: [ 'grass', 'poison' ]
-      }
-    ]
-*/
+module.exports = { getPokemons, createPokemon, getPokemonId };
