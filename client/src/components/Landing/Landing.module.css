@@ -1,0 +1,42 @@
+/* Main */
+main {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    margin-left: 7rem;
+}
+
+main h2 {
+    font-size: 4.5rem;
+}
+
+main p {
+    font-size: 1rem;
+    width: 9rem;
+    color: hsl(0, 0%, 41%);
+    line-height: 1.2rem;
+}
+
+main button {
+    display: inline-block;
+    background-color: hsl(0, 0%, 8%);
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
+    margin-top: 1rem;
+}
+
+.textP #textSide {
+    margin-top: 5rem;
+}
+
+/* image Pokemon */
+.imgSide img{
+    width: 100%;
+    height: auto;
+    /* width: 50rem; */
+}

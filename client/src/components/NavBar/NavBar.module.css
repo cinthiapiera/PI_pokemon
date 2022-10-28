@@ -1,0 +1,43 @@
+* {
+  font-family: "Epilogue", sans-serif;
+  font-size: 0.9rem;
+}
+
+.logo {
+  font-size: 1.3rem;
+  color: rgb(227, 68, 10);
+}
+
+nav,
+/* .ctaBtns, */
+.menuItems {
+  display: flex;
+  align-items: center;
+}
+
+li {
+  list-style-type: none;
+}
+
+nav {
+  margin: 0 1.5rem 1.5rem 1.5rem;
+  justify-content: space-between;
+}
+
+.logosSection {
+  display: flex;
+}
+
+/* .ctaBtns li,  */
+.menuItems li {
+  font-size: 0.5rem;
+  margin-right: 1rem;
+  color: hsl(0, 79%, 28%);
+  padding: 0.2rem 0.7rem;
+}
+
+/* .ctaBtns li:nth-last-child(1) {
+  border: 1px solid rgb(190, 92, 92);
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.3rem;
+} */
