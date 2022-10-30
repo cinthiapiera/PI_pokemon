@@ -1,8 +1,23 @@
 import React from "react";
+import styles from './Cards.module.css';
 
-function Cards() {
+function Cards({id, name, image, types}) {
     return(
-        <div>Cards</div>
+        <div className={styles.container}>
+            <div className={styles.rowpadding}>
+                <div className={styles.card} key={id}>
+                    <div className={styles.cardImage}>
+                        <img src={image} alt="pokemon" width="190px" heigth="190px"/>
+                    </div>
+                    <div className={styles.title}>Name: </div>
+                    <div className={styles.heading}>{name}
+                        <div className={styles.types}>Type:
+                            <span className={styles.badge}>{types}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 };
 

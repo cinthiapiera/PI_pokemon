@@ -36,7 +36,5 @@ main button {
 
 /* image Pokemon */
 .imgSide img{
-    width: 100%;
-    height: auto;
-    /* width: 50rem; */
+    height: 25rem;
 }
