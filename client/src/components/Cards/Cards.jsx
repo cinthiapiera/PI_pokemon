@@ -17,7 +17,7 @@ function Cards({id, name, image, types}) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     )
 };
 
