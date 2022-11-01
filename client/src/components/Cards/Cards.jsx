@@ -1,7 +1,8 @@
 import React from "react";
 import styles from './Cards.module.css';
 
-function Cards({id, name, image, types}) {
+
+function Cards({id, name, image, attack, types}) {
     return(
         <div className={styles.container}>
             <div className={styles.rowpadding}>
@@ -13,6 +14,9 @@ function Cards({id, name, image, types}) {
                     <div className={styles.heading}>{name}
                         <div className={styles.types}>Type:
                             <span className={styles.badge}>{types}</span>
+                        </div>
+                        <div className={styles.types}>Attack:
+                            <span className={styles.badge}>{attack}</span>
                         </div>
                     </div>
                 </div>
