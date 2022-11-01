@@ -15,13 +15,14 @@ const getPokemons = async() => {
       //     id: pokemon.id,
       //     name: pokemon.name,
       //     image: pokemon.sprites.other.home.front_default,
-      //     types: pokemon.types.map(type => { return {name: type.type.name}})
+      //     types: pokemon.types.map(type => { return {name: type.type.name}}),
+      //     attack: pokemon.stats[1].base_stat, 
       //   }
       // })
       // console.log(pokemons)
       //throw Error('error voluntario')
       const pokemonDb = await Pokemon.findAll({
-        attributes: ["id", "name", "image"],
+        attributes: ["id", "name", "image", "attack"],
         include: {
           model: Type,
           attributes: ["name"],
@@ -63,7 +64,7 @@ const getPokemonId = async(id) => {
         speed: pokemonId.stats[5].base_stat,
         height: pokemonId.height,
         weight: pokemonId.weight,
-        image: pokemonId.sprites.other['official-artwork']['front_default'],
+        image: pokemonId.sprites.other.home.front_default,
         types: pokemonId.types.map(type => { return {name: type.type.name}})
       }
       return pokemon;
