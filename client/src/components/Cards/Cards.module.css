@@ -31,6 +31,7 @@
     font-weight: 700;
     color: rgb(63, 121, 230);
     padding: 9px 6px 0;
+    text-decoration: none;
 }
 
 .title:hover {

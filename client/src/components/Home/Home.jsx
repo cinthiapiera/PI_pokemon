@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './Home.module.css';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -145,7 +145,7 @@ function Home() {
             (currentPokemons.map((pokemon) => {
               return(
                 <div className={styles["grid-item"]} key={pokemon.id}>
-                  <Link to={`/pokemon/${pokemon.id}`}>
+                  <NavLink to={`/pokemon/${pokemon.id}`} style={{ textDecoration: 'none'}}>
                     <Cards
                       id={pokemon.id}
                       name={pokemon.name}
@@ -153,7 +153,7 @@ function Home() {
                       types={pokemon.types.map((t)=>`${t.name}  `)}
                       attack= {pokemon.attack}
                     />
-                  </Link>
+                  </NavLink>
                 </div>
               )
             }))

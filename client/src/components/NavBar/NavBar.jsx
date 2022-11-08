@@ -7,8 +7,8 @@ function NavBar(){
         <nav>
             <h1 className={styles["logo"]}>Henry Pokemon</h1>
             <ul className={styles["menu-items"]}>                
-                <li><NavLink to="/" style={{ textDecoration: 'none', color: 'white'}}>Landing</NavLink></li>
-                <li><NavLink to="/create" style={{ textDecoration: 'none', color: 'white'}}>Create Pokemon</NavLink></li>
+                <li><NavLink to="/" style={{ textDecoration: 'none', color: 'black'}}>Landing</NavLink></li>
+                <li><NavLink to="/create" style={{ textDecoration: 'none', color: 'black'}}>Create Pokemon</NavLink></li>
             </ul>
         </nav>
     )

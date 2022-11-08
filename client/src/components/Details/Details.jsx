@@ -19,34 +19,35 @@ function Details() {
   },[dispatch, id])
 
   return(
-    <div>
+    <>
         { //simepre se pregunta si hay algo dentro del array o esta vacio (!!negacion): pokemon && si es 0 me da falso pero si contiene algo me da true
           pokemon &&
-            <div className={styles.blogPost}>
-                <div className={styles.blogPostImage}>
-                  <img src={pokemon.image} alt={`${pokemon.name} pokemon`} />
-                </div>
-              <div className={styles.blogPostInfo}>
-                <div className={styles.blogPostId}>
-                  <p>id: {pokemon.id}</p>
-                  <h4 className={styles.blogPostTitle}>name: {pokemon.name}</h4>
-                  <div className={styles.blogPostText}>
-                    <p>types: {pokemon.types?.map(t=>`${t.name}  `)}</p>
-                    <p>hp: {pokemon.hp}</p>
-                    <p >attack: {pokemon.attack}</p>
-                    <p >defense: {pokemon.defense}</p>
-                    <p>speed: {pokemon.speed}</p>
-                    <p>height: {pokemon.height}</p>
-                    <p>weight: {pokemon.weight}</p>
-                  </div>              
-                  <Link to="/home" >
-                    <button className={styles.blogPostCta}>Regresar a Home</button>
-                  </Link>
-                </div >
-              </div>
+          <div className={styles["blog-container"]}>
+            <Link to="/home"><button className={styles["blog-button"]}>Back to home</button></Link>
+            <div className={styles["left"]}>
+              <img src={pokemon.image} alt={`${pokemon.name} pokemon`} />
             </div>
+            <div className={styles["right"]}>
+                <div className={styles["blog-info"]}>
+                  <div className={styles["blog-name"]}>
+                    <h1>{pokemon.name}</h1>
+                  </div>
+                  <div className={styles["blog-details"]}>
+                      <p>Id: {pokemon.id}</p>
+                      <p>Height: {pokemon.height}</p>
+                      <p>Weight: {pokemon.weight}</p>
+                      <p>Types: {pokemon.types?.map(t=>`${t.name}  `)}</p>
+                      <span>Stats:</span>
+                      <p>Health Points(hp): {pokemon.hp}</p>
+                      <p>Attack: {pokemon.attack}</p>
+                      <p>Defense: {pokemon.defense}</p>
+                      <p>Speed: {pokemon.speed}</p>
+                    </div>
+                </div>
+            </div>
+          </div>
         }
-    </div>
+    </>
   )
 };
 

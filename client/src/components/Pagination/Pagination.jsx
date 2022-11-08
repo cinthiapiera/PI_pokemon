@@ -7,7 +7,6 @@ function Pagination({ Allpokemons, pokemonsPerPage, paginated}) {
     pageNumber.push(i+1)
   }
   return(
-    <div className={styles["container"]}>
       <ul className={styles["pagination"]}>
         { pageNumber && pageNumber.map(number => {
           return(
@@ -17,7 +16,6 @@ function Pagination({ Allpokemons, pokemonsPerPage, paginated}) {
           )  
         })}
       </ul>
-    </div>
   )
 };
 
