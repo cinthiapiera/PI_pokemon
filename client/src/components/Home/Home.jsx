@@ -10,37 +10,44 @@ import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
 import Search from "../Search/Search";
 import Pagination from "../Pagination/Pagination";
+import Loading from "../Loading/Loading";
 
 function Home() {
 
   const dispatch = useDispatch();
   const Allpokemons = useSelector(state => state.pokemons);
   const Alltypes = useSelector(state => state.types);
-  //console.log(pokemons, types);
 
   /*paginado */
   const [currentPage, setCurrentPage] = useState(1);
+  //console.log(currentPage, setCurrentPage) // 1,2,3,4
   const [pokemonsPerPage] = useState(12)
 
   const indexLastPokemons = currentPage * pokemonsPerPage //12
   const indexFirstPokemons = indexLastPokemons - pokemonsPerPage //0
   const currentPokemons = Allpokemons.slice(indexFirstPokemons,indexLastPokemons)
+  //console.log(currentPokemons) 12 -12 -12 -4
 
-  const [ /* order */, setOrder] = useState("");
+  const [ /*order*/, setOrder] = useState(""); //Para modificar el estado local y me ayude al renderizado
 
   useEffect(()=>{
     dispatch(getPokemons());
-    dispatch(getTypes());
   },[dispatch])
   
+  useEffect(()=>{
+    dispatch(getTypes());
+  },[dispatch])
+
   /* Resetea todos los pokemones */
   function handlerReset(e) {
     e.preventDefault(); //para que no se recargue la pagina
+    setCurrentPage(1)
     dispatch(getPokemons())
   }
 
   /* Paginado */
   const paginated = (pageNumber) => {
+    //console.log(pageNumber) 1-2-3-4
     setCurrentPage(pageNumber)
   }
 
@@ -49,7 +56,7 @@ function Home() {
     e.preventDefault();
     dispatch(sortPokemonsAlphabetic(e.target.value))
     setCurrentPage(1) //setear el ordenamineto en la primera pagina
-    setOrder(`Order ${e.target.value}`);
+    setOrder(`${e.target.value}`);
   }
 
   /* Ordenamiento por ataque */
@@ -57,13 +64,16 @@ function Home() {
     e.preventDefault();
     dispatch(sortPokemonsAttack(e.target.value))
     setCurrentPage(1)
-    setOrder(`Order ${e.target.value}`);
+    setOrder(`${e.target.value}`);
   }
+
+  //---------------------------------------------------------
 
   /* Filtrado por tipo de pokemon (2) */
   function handlerFilterTypes(e){
     e.preventDefault();
     dispatch(filterPokemonsTypes(e.target.value))
+    setCurrentPage(1)
     //e.target.value es el valor del select que captura
   }
 
@@ -71,64 +81,88 @@ function Home() {
   function handlerFilterCreated(e) {
     e.preventDefault();
     dispatch(filterPokemonsCreated(e.target.value))
+    setCurrentPage(1)
   }
-
-
 
   return(
     <div>
       <NavBar />
-        <div className={styles.gridContainer}>
-          <button onClick={e=>handlerReset(e)}>Reset pokemons</button>
+      <div className={styles["grid-container"]}>
+        <div className={styles["grid-item"]}>
+          <button className={styles["button-reset"]} onClick={e=>handlerReset(e)}>Reset Pokemons</button>
+        </div>
+        <div className={styles["grid-item"]}>
           <Search />
-          {/* el value nos sirve para indicar que action se debe realizar al escoger una opcion */}
-          <div className={styles.gridItem}>
-            <label>Order Alphabetic: </label>
+        </div>
+        {/* el value nos sirve para indicar que action se debe realizar al escoger una opcion */}
+        <div className={styles["grid-item"]}>
+          <div className={styles["box"]}>
+            <label>Order alphabetic: </label>
             <select onChange={(e)=> handlerSortAlpha(e)}>
+              <option value="All">All</option>
               <option value="asc">A - Z</option>
               <option value="des">Z - A</option>
             </select>
-            <label>Order by Attack: </label>
+          </div>
+        </div>
+        <div className={styles["grid-item"]}>
+          <div className={styles["box"]}>
+            <label>Order by attack: </label>
             <select onChange={(e)=> handlerSortAttack(e)}>
+              <option value="All">All</option>
               <option value="asc">↑ Min - Max</option>
               <option value="des">↓ Max - Min</option>
             </select>
-            <br />
-            <label>Filter by type: </label>
-            <select onChange={(e)=>handlerFilterTypes(e)}>
-                <option value="All">All</option>
-              {Alltypes?.map(type => (
-                <option value={`${type.name}`} key={type.id}>{type.name}</option>
-              ))}
-            </select>
-            <label>Filter by created: </label>
-              <select onChange={(e)=>handlerFilterCreated(e)}>
-                <option value="All">All</option>
-                <option value="existing">Existing</option>
-                <option value="created">Created</option>
-              </select>
           </div>
         </div>
-        <Pagination Allpokemons={Allpokemons.length} pokemonsPerPage={pokemonsPerPage} paginated={paginated}/>
-        {/* cambio: en un principio se renderizaba Allpokemons todos los pokemones , pero en el paginado este no da una segmento del aaray de pokemones a mostrar */}
-        <div className={styles.gridContainer}>
-          {currentPokemons?.map((pokemon) => {
+        <div className={styles["grid-item"]}>
+          <div className={styles["box"]}>
+            <label>Filter by types: </label>
+            <select onChange={(e)=>handlerFilterTypes(e)}>
+              <option value="All">All</option>
+                {Alltypes?.map(type => (
+                  <option value={`${type.name}`} key={type.id}>{type.name}</option>
+                ))}
+            </select>
+          </div>
+        </div>
+        <div className={styles["grid-item"]}>
+          <div className={styles["box"]}>
+            <label>Filter by created: </label>
+            <select onChange={(e)=>handlerFilterCreated(e)}>
+              <option value="All">All</option>
+              <option value="existing">Existing</option>
+              <option value="created">Created</option>
+            </select>
+          </div>
+        </div>
+        </div>
+        <div className={styles["grid-item"]}>
+          <Pagination Allpokemons={Allpokemons.length} pokemonsPerPage={pokemonsPerPage} paginated={paginated}/>
+        </div>
+        <div className={styles["grid-container"]}>
+          {currentPokemons.length ? 
+            (currentPokemons.map((pokemon) => {
               return(
-                <div className={styles.gridItem} key={pokemon.id} >
+                <div className={styles["grid-item"]} key={pokemon.id}>
                   <Link to={`/pokemon/${pokemon.id}`}>
-                  <Cards
-                    id={pokemon.id}
-                    name={pokemon.name}
-                    image={pokemon.image}
-                    types={pokemon.types.map((t)=>`${t.name} `)}
-                    attack= {pokemon.attack}
-                  />
+                    <Cards
+                      id={pokemon.id}
+                      name={pokemon.name}
+                      image={pokemon.image}
+                      types={pokemon.types.map((t)=>`${t.name}  `)}
+                      attack= {pokemon.attack}
+                    />
                   </Link>
                 </div>
               )
-          })}
-        </div>  
-        <Pagination Allpokemons={Allpokemons.length} pokemonsPerPage={pokemonsPerPage} paginated={paginated}/>
+            }))
+            : (<Loading/>)
+          }
+        </div>
+        <div className={styles["grid-item"]}>
+          <Pagination Allpokemons={Allpokemons.length} pokemonsPerPage={pokemonsPerPage} paginated={paginated}/>
+        </div>
     </div>
   )
 };

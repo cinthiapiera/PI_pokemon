@@ -1,10 +1,58 @@
-.gridContainer {
-    display: grid;
-    gap: 100px;
-    grid-template-columns: auto auto auto;
-    padding: 20px;
+.grid-container {
+  display: flex;
+  grid-gap: 20px;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: space-evenly;
+  align-items: baseline;
+  background-color: rgba(255, 255, 255, 0.876);
 }
 
-.gridItem {
-    text-align: center;
+.grid-item {
+  text-align: center;
+  font-size: 30px;
+  margin: 1.5rem 1.5rem 1.5rem 1.5rem;
+}
+
+/*group select and option */
+.box select {
+  background-color: hsl(0, 0%, 8%);
+  color:  #fff;
+  padding: 5px;
+  width: 80px;
+  border: none;
+  border-radius: 0.4rem;
+  font-size: 11px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+}
+
+.box::before {
+  width: 20%;
+  height: 80%;
+  text-align: center;
+  font-size: 8px;
+  line-height: 40px;
+  color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.box:hover::before {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+  padding: 10px;
+}
+
+.button-reset {
+  display: inline-block;
+  background-color: crimson;
+  color: #fff;
+  border: none;
+  font-size: 0.85rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  margin-top: 1rem;
 }

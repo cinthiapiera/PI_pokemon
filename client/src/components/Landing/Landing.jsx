@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 function Landing() {
   return(
     <main>
-      <section className={styles.textP} id="textSide">
-        <h2>Henry<br />Pokémon</h2>
+      <section className={styles['text-side']}>
+        <h1>Henry<br />Pokémon</h1>
         <p>SPA with the most complete information on pokémon</p>
         <Link to="/home">
           <button>Get start!</button>
         </Link>
       </section>
-      <section className={styles.imgSide}>
+      <section className={styles['img-side']}>
         <img src={img} alt="pokemons.png" />
       </section>
     </main>

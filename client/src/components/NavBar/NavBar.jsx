@@ -1,14 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from './NavBar.module.css';
 
 function NavBar(){
     return(
         <nav>
-            <h2 className={styles.logo}> Henry Pokemon</h2>
-            <ul className={styles.menuItems}>                
-                <li><Link to="/">Inicio</Link></li>
-                <li><Link to="/pokemonCreate">Create</Link></li>
+            <h1 className={styles["logo"]}>Henry Pokemon</h1>
+            <ul className={styles["menu-items"]}>                
+                <li><NavLink to="/" style={{ textDecoration: 'none', color: 'white'}}>Landing</NavLink></li>
+                <li><NavLink to="/create" style={{ textDecoration: 'none', color: 'white'}}>Create Pokemon</NavLink></li>
             </ul>
         </nav>
     )

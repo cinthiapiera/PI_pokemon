@@ -1,4 +1,5 @@
 import {React, useEffect} from "react";
+import styles from "./Details.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -19,28 +20,32 @@ function Details() {
 
   return(
     <div>
-        {
-          pokemon && pokemon? 
-          <div>
-            <img src={pokemon.image} alt={`${pokemon.name} pokemon`} />
-            <p>id: {pokemon.id}</p>
-            <p>name: {pokemon.name}</p>
-            <p>types: {pokemon.types?.map(t=>t.name)}</p>
-            <p>hp: {pokemon.hp}</p>
-            <p>attack: {pokemon.attack}</p>
-            <p>defense: {pokemon.defense}</p>
-            <p>speed: {pokemon.speed}</p>
-            <p>height: {pokemon.height}</p>
-            <p>weight: {pokemon.weight}</p>
-          </div>
-          : 
-          <div>
-            ...loading
-          </div>
+        { //simepre se pregunta si hay algo dentro del array o esta vacio (!!negacion): pokemon && si es 0 me da falso pero si contiene algo me da true
+          pokemon &&
+            <div className={styles.blogPost}>
+                <div className={styles.blogPostImage}>
+                  <img src={pokemon.image} alt={`${pokemon.name} pokemon`} />
+                </div>
+              <div className={styles.blogPostInfo}>
+                <div className={styles.blogPostId}>
+                  <p>id: {pokemon.id}</p>
+                  <h4 className={styles.blogPostTitle}>name: {pokemon.name}</h4>
+                  <div className={styles.blogPostText}>
+                    <p>types: {pokemon.types?.map(t=>`${t.name}  `)}</p>
+                    <p>hp: {pokemon.hp}</p>
+                    <p >attack: {pokemon.attack}</p>
+                    <p >defense: {pokemon.defense}</p>
+                    <p>speed: {pokemon.speed}</p>
+                    <p>height: {pokemon.height}</p>
+                    <p>weight: {pokemon.weight}</p>
+                  </div>              
+                  <Link to="/home" >
+                    <button className={styles.blogPostCta}>Regresar a Home</button>
+                  </Link>
+                </div >
+              </div>
+            </div>
         }
-        <div>
-          <Link to="/home"><button>Regresar a Home</button></Link>
-        </div>  
     </div>
   )
 };

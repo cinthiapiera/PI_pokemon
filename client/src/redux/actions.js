@@ -8,6 +8,7 @@ export const SORT_POKEMONS_ALPHA = "SORT_POKEMONS_ALPHA";
 export const SORT_POKEMONS_ATTACK = "SORT_POKEMONS_ATTACK";
 export const GET_POKEMON_NAME = "GET_POKEMON_NAME";
 export const GET_POKEMON_ID = "GET_POKEMON_ID";
+export const POST_POKEMON = "POST_POKEMON";
 // export const MESSAGE_ERROR = "MESSAGE_ERROR";
 
 export function getPokemons() {
@@ -19,7 +20,7 @@ export function getPokemons() {
         payload: pokemons.data
       })
     } catch (error) {
-      console.log(error);
+      window.alert([error.message])
     }
   }
 };
@@ -33,7 +34,7 @@ export function getTypes() {
         payload: types.data
       })
     } catch (error) {
-      console.log(error);
+      window.alert([error.message])
     }
   }
 }
@@ -48,11 +49,7 @@ export function getPokemonName(name) {
         payload: namepokemon.data
       })
     } catch (error) {
-      // return dispatch({
-      //   type: GET_POKEMON_NAME,
-      //   payload: message
-      // })
-      alert("Pokemon not found")
+      window.alert([error.message]) 
     }
   }
 }
@@ -67,24 +64,25 @@ export function getPokemonId(id) {
         payload: pokemonid.data
       })
     } catch (error) {
-      alert("Pokemon not found")
+      //alert("Pokemon not found")
+      window.alert([error.message])
     }
     
   }
 }
 
-export function filterPokemonsTypes(payload){
-  //console.log(payload);
-  return {
-    type: FILTER_POKEMONS_TYPES,
-    payload
-  }
-}
+export function postPokemon(payload) {
+  console.log(payload)
+  return async function () {
+    try {
+      const create = await axios.post("http://localhost:3001/pokemons/",payload)
+      alert('se creo el pokemon')
+      return create;
+    } catch (error) {
+      // alert('Pokemon name already exist')
+      window.alert([error.message])
+    }
 
-export function filterPokemonsCreated(payload) {
-  return{
-    type: FILTER_POKEMONS_CREATED,
-    payload
   }
 }
 
@@ -102,8 +100,16 @@ export function sortPokemonsAttack(payload){
   }
 }
 
-// export function messageError(){
-//   return{
-//     type: MESSAGE_ERROR,
-//   }
-// }
+export function filterPokemonsTypes(payload){
+  return {
+    type: FILTER_POKEMONS_TYPES,
+    payload
+  }
+}
+
+export function filterPokemonsCreated(payload) {
+  return{
+    type: FILTER_POKEMONS_CREATED,
+    payload
+  }
+}

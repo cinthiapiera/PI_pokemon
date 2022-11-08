@@ -1,4 +1,4 @@
-import { GET_POKEMONS, GET_TYPES, GET_POKEMON_NAME, GET_POKEMON_ID, FILTER_POKEMONS_TYPES, FILTER_POKEMONS_CREATED, SORT_POKEMONS_ALPHA, SORT_POKEMONS_ATTACK } from "./actions";
+import { GET_POKEMONS, GET_TYPES, GET_POKEMON_NAME, GET_POKEMON_ID, FILTER_POKEMONS_TYPES, FILTER_POKEMONS_CREATED, SORT_POKEMONS_ALPHA, SORT_POKEMONS_ATTACK, POST_POKEMON } from "./actions";
 
 const initialState = {
   pokemons: [],
@@ -21,65 +21,63 @@ function reducer(state = initialState, action) {
         types: action.payload
       }
     case GET_POKEMON_NAME:
-      return{
-        ...state,
-        pokemons: action.payload
-      }
+        return {
+          ...state,
+          pokemons: action.payload,
+        };
     case GET_POKEMON_ID:
       return{
         ...state,
         detail: action.payload
-      }     
+      }
+    case POST_POKEMON:
+      return{
+        ...state,
+      }
+    case SORT_POKEMONS_ALPHA:
+      let aux1 = state.pokemons
+      let sorted1 = action.payload === "asc"
+      ? aux1.sort( (a,b) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+        if (b.name.toLowerCase() > a.name.toLowerCase()) return -1;
+        return 0;
+        })
+      : aux1.sort((a, b) => {
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+        if (b.name.toLowerCase() > a.name.toLowerCase()) return 1;
+        return 0;
+        });
+      return{
+        ...state,
+        pokemons: sorted1,
+      }
+    case SORT_POKEMONS_ATTACK:
+      let aux2 = state.pokemons
+      let sorted2 = action.payload === "asc"
+      ? aux2.sort((a,b) => a.attack - b.attack)
+      : aux2.sort((a,b) => b.attack - a.attack)
+      return{
+        ...state,
+        pokemons: sorted2,
+      }
     case FILTER_POKEMONS_TYPES:
-      const allpokemons1 = state.auxpokemons
-      const filterpokemonstypes = action.payload === "All" ? allpokemons1 : allpokemons1.filter(pokemon => pokemon.types.map(type => type.name)[0] === action.payload || pokemon.types.map(type => type.name)[1] === action.payload)
-      //console.log(filterpokemons);
+      const aux3 = state.auxpokemons
+      const filterpokemonstypes = action.payload === "All"? aux3 
+      : aux3.filter(pokemon => pokemon.types.map(type => type.name)[0] === action.payload || pokemon.types.map(type => type.name)[1] === action.payload)
+      console.log(filterpokemonstypes)
       return{
         ...state,
         pokemons: filterpokemonstypes //solo contiene los filtrados en el estado (pokemons) que siempre se renderiza
       }
     case FILTER_POKEMONS_CREATED:
-      const allpokemons2 = state.auxpokemons
-      const filterpokemonscreated = action.payload === "created"? allpokemons2.filter(pokemon => pokemon.created) : allpokemons2.filter(pokemon => !pokemon.created)
+      const aux4 = state.auxpokemons
+      const filterpokemonscreated = action.payload === "created"? aux4.filter(pokemon => pokemon.created) : aux4.filter(pokemon => !pokemon.created)
       return{
         ...state,
-        pokemons: action.payload === "All" ? allpokemons2 : filterpokemonscreated
-      }
-    case SORT_POKEMONS_ALPHA:
-      const sorted1 = action.payload === "asc" 
-        ? state.pokemons.sort(function (a,b) {
-          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;  
-          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1; 
-          return 0;
-          })
-        : state.pokemons.sort(function (a, b) {
-          if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
-          if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
-          return 0;
-          });
-      //console.log(sorted1);
-      return{
-        ...state,
-        pokemons: sorted1
-      }
-    case SORT_POKEMONS_ATTACK:
-      const sorted2 = action.payload === "asc"
-      ? state.pokemons.sort(function (a,b){
-        if (a.attack > b.attack) return 1;  
-        if (a.attack < b.attack) return -1; 
-        return 0;
-        })
-      : state.pokemons.sort(function (a, b) {
-        if (a.attack < b.attack) return 1;
-        if (a.attack > b.attack) return -1;
-        return 0;
-        });
-      return{
-        ...state,
-        pokemons: sorted2
+        pokemons: action.payload === "All" ? aux4 : filterpokemonscreated
       }
     default:
-      return{
+      return {
         ...state
       } 
   }
