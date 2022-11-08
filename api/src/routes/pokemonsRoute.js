@@ -7,7 +7,7 @@ pokemonsRoute.get('/', async(req,res) => {
       const { name } = req.query;
       const pokemonsAll = await getPokemons()
       if(name){
-        let pokemonName = pokemonsAll.filter((pokemon) => pokemon.name.toLowerCase().includes(name.toLowerCase()))
+        let pokemonName = pokemonsAll.filter((pokemon) => pokemon.name.toLowerCase() === name.toLowerCase())
         pokemonName.length ? res.status(200).send(pokemonName) : res.status(404).send({error:'Pokemon not found'})
       }else{
         res.status(200).send(pokemonsAll)
