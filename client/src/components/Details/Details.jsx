@@ -33,12 +33,17 @@ function Details() {
                     <h1>{pokemon.name}</h1>
                   </div>
                   <div className={styles["blog-details"]}>
+                      <hr/>
+                        <span><strong>Data in general</strong></span>
+                      <hr/>
                       <p>Id: {pokemon.id}</p>
                       <p>Height: {pokemon.height}</p>
                       <p>Weight: {pokemon.weight}</p>
                       <p>Types: {pokemon.types?.map(t=>`${t.name}  `)}</p>
-                      <span>Stats:</span>
-                      <p>Health Points(hp): {pokemon.hp}</p>
+                      <hr/>
+                        <span><strong>Stats data</strong> </span>
+                      <hr/>
+                      <p>Health Points (hp): {pokemon.hp}</p>
                       <p>Attack: {pokemon.attack}</p>
                       <p>Defense: {pokemon.defense}</p>
                       <p>Speed: {pokemon.speed}</p>

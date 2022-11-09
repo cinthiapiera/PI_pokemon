@@ -1,8 +1,64 @@
-.selectdiv {
+.form {
+    width: 340px;
+    height: 640px;
+    border-radius: 8px;
+    box-shadow: 0 0 40px -10px #000;
+    margin: calc(30vh - 220px) auto;
+    padding: 20px 30px;
+    /* max-width: calc(100vw - 40px); */
+    box-sizing: border-box;
+    position: relative;
+}
+
+.form-legend{
+  margin: 5px 0;
+  padding-bottom: 5px;
+  width: 180px;
+  color: rgb(63, 121, 230);
+  border-bottom: 1px solid rgb(63, 121, 230);;
+}
+
+label:before{
+    content: attr(type);
+    display: block;
+    margin: 20px 0 0;
+    font-size: 12px;
+    color: #5a5a5a;
+}
+
+input {
+    width: 60%;
+    padding: 5px;
+    box-sizing: border-box;
+    background: none;
+    /* outline: none;
+    resize: none; */
+    border: 0;
+    transition: all 0.3s;
+    border-bottom: 1px solid #bebed2;
+}
+
+.form select {
+    appearance: none;
+    flex: 1 0 auto;
+    padding: 10px;
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+    /* border-bottom: 1px solid $yankeesblue;
+    padding: 5px 0;
+    font-size: 18px;
+    font-weight: 300;
+    outline: none;
+    margin-right: 10px; */
+}
+
+
+/* .selectdiv {
     position: relative;
     float: center;
     margin: 50px 33%;
-}
+} */
 
 /* .selectdiv select {
     -webkit-appearance: none;

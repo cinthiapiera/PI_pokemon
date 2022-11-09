@@ -89,83 +89,70 @@ function Create() {
   }
 
   return(
-    <div className={styles.selectdiv}>
-      <p>Create</p>
-      <div>
-        <Link to="/home"><button>Regresar a Home</button></Link>
-      </div>
+    <>
+      <Link to="/home"><button>Regresar a Home</button></Link>
       <br /><br />
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>FORM TO CREATE POKEMON</legend>
+      <form onSubmit={handleSubmit} className={styles["form"]}>
+          <legend className={styles["form-legend"]}>CREATE POKEMON</legend>
           <label htmlFor="name">Name : </label>
           <input className={errors.name && 'danger'} type="text" name="name" onChange={handleInputChange} value={input.name}/>
           {errors.name && (<p className="danger">{errors.name}</p>)}
-          <br /><br />
 
           <label htmlFor="image">Image : </label>
           <input type="url" name="image" onChange={handleInputChange} value={input.image}/>
           {errors.image && (<p className="danger">{errors.image}</p>)}
-          <br /><br />
 
           <label htmlFor="hp">Health Points :  </label>
           <input type="number" placeholder="between 1 - 300" name="hp" value={input.hp} onChange={handleInputChange}/>
           {errors.hp && (<p className="danger">{errors.hp}</p>)}
-          <br /><br />
 
           <label htmlFor="attack">Attack : </label>
           <input type="number" placeholder="between 1 - 200" name="attack" value={input.attack} onChange={handleInputChange}/>
           {errors.attack && (<p className="danger">{errors.attack}</p>)}
-          <br /><br />
 
           <label htmlFor="defense">Defense :</label>
           <input type="number" placeholder="between 1 - 300" name="defense" value={input.defense} onChange={handleInputChange}/>
           {errors.defense && (<p className="danger">{errors.defense}</p>)}
-          <br /><br />
 
           <label htmlFor="speed">Speed : </label>
           <input type="number" placeholder="between 1 - 200" name="speed" value={input.speed} onChange={handleInputChange}/>
           {errors.speed && (<p className="danger">{errors.speed}</p>)}
-          <br /><br />
-          
+
           {/*Dato: la mayoria de los pokemones no superan los 2 metros | Comfey(0.1) -Wailord(14.5)*/}
           <label htmlFor="height">Height : </label>
           <input type="number" placeholder="between 0.1 - 15.0 m" name="height" value={input.height} onChange={handleInputChange}/>
           {errors.height && (<p className="danger">{errors.height}</p>)}
-          <br /><br />
 
           {/*Dato: la mayoria de los pokemones no superan los 100 kilogramos | Cosmog(0.1) -Celesteela(999,9)*/}
           <label htmlFor="weight">Weight : </label> 
           <input type="number" placeholder="between 0.1 - 1.0000 kg" name="weight" value={input.weight} onChange={handleInputChange}/>
           {errors.weight && (<p className="danger">{errors.weight}</p>)}
-          <br /><br />
-          <fieldset>
-            <legend>CHOOSE TWO TYPES OF POKEMON</legend>
-            <select name="types" onChange={handleSelect}>
-              {Alltypes.length && Alltypes.map(type => {
-                  return(
-                    <option key={type.id} value={type.name} >{type.name}</option>
-                  )
-                })
-              }
-            </select>
-            {/* {errors.weight && (<p className="danger">{errors.weight}</p>)} */}
-            <br />
-            { input.types.map(e => {
+          <br />
+
+          <label htmlFor="weight">CHOOSE TYPES OF POKEMON</label> 
+          <select name="types" onChange={handleSelect}>
+            {Alltypes.length && Alltypes.map(type => {
                 return(
-                  <div key={e}>
-                    <h5>{e}</h5>
-                    <button onClick={() => handleDelete(e)}>X</button>
-                  </div>
+                  <option key={type.id} value={type.name} >{type.name}</option>
                 )
               })
             }
-          </fieldset>
-        </fieldset>
-        <br />
-        <button type="submit">SUBMIT</button>
+          </select>
+          {/* {errors.weight && (<p className="danger">{errors.weight}</p>)} */}
+          { input.types.map(e => {
+              return(
+                <div key={e}>
+                  <h5>{e}</h5>
+                  <button onClick={() => handleDelete(e)}>X</button>
+                </div>
+              )
+            })
+          }
       </form>
-    </div>
+      <div>
+          <button type="submit">SUBMIT</button>
+        </div>
+    </>
   )
 };
 
