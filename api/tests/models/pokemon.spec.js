@@ -1,4 +1,4 @@
-const { Pokemon, conn } = require('../../src/db.js');
+const { Pokemon, Types, conn } = require('../../src/db.js');
 const { expect } = require('chai');
 
 describe('Pokemon model', () => {
@@ -17,6 +17,21 @@ describe('Pokemon model', () => {
       it('should work when its a valid name', () => {
         Pokemon.create({ name: 'Pikachu' });
       });
+      it('should not work when there is no name', () => {
+        Pokemon.create({ weight: '15' })
+        .then(() => done(new Error('It requires a valid name')))
+        .catch(() => done());
+      });
     });
   });
+  describe('Ejemplo', ()=>{
+    it('should not create the type de pokemon if name is not send', async()=>{
+      expect.assertions(1)
+      try{
+        await Types.create({name: 'Hola'});
+      }catch(error){
+        expect(error.message).toBeDefined();
+      }
+    })
+  })
 });

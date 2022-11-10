@@ -15,6 +15,12 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
+    image: {
+      type: DataTypes.STRING,
+      validate: {
+        isUrl: true
+      }
+    },
     hp: {
       type: DataTypes.INTEGER
     },
@@ -32,18 +38,12 @@ module.exports = (sequelize) => {
     },
     weight: {
       type: DataTypes.INTEGER
-    },
-    image: {
-      type: DataTypes.STRING,
-      validate: {
-        isUrl: true
-      }
-    },
-    created: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-      allowNull: false
-    }
+    }   
+    // created: {
+    //   type: DataTypes.BOOLEAN,
+    //   defaultValue: false,
+    //   allowNull: false
+    // }
   },{
     timestamps: false
   });

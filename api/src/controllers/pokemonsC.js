@@ -71,8 +71,8 @@ const getPokemonId = async(id) => {
     }
 }
 
-const createPokemon = async({name, hp, attack, defense, speed, height, weight, image, created, types}) => {
-  if(!name || !hp || !attack || !defense || !speed || !height || !weight || !image || !created || !types){
+const createPokemon = async({name, hp, attack, defense, speed, height, weight, image, types}) => {
+  if(!name || !hp || !attack || !defense || !speed || !height || !weight || !image || !types){
     throw Error("Sending incomplete information!");
   }else{
     const create = await Pokemon.create({
@@ -84,7 +84,6 @@ const createPokemon = async({name, hp, attack, defense, speed, height, weight, i
         height,
         weight,
         image,
-        created
     })
     let typeDb = await Type.findAll({
       where: { name: types}
