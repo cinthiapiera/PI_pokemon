@@ -35,7 +35,7 @@ function reducer(state = initialState, action) {
         ...state,
       }
     case SORT_POKEMONS_ALPHA:
-      let aux1 = state.pokemons
+      const aux1 = state.pokemons
       let sorted1 = action.payload === "asc"
       ? aux1.sort( (a,b) => {
         if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
@@ -61,20 +61,25 @@ function reducer(state = initialState, action) {
         pokemons: sorted2,
       }
     case FILTER_POKEMONS_TYPES:
-      const aux3 = state.auxpokemons
-      const filterpokemonstypes = action.payload === "All"? aux3 
+      let aux3 = state.auxpokemons
+      let filterpokemonstypes = action.payload === "All"? aux3 
       : aux3.filter(pokemon => pokemon.types.map(type => type.name)[0] === action.payload || pokemon.types.map(type => type.name)[1] === action.payload)
-      console.log(filterpokemonstypes)
+      if(filterpokemonstypes.length === 0){
+        filterpokemonstypes=aux3
+        alert("Dear user there has not been found pokemon of that type")
+      }
       return{
         ...state,
         pokemons: filterpokemonstypes //solo contiene los filtrados en el estado (pokemons) que siempre se renderiza
       }
     case FILTER_POKEMONS_CREATED:
       const aux4 = state.auxpokemons
-      const filterpokemonscreated = action.payload === "created"? aux4.filter(pokemon => pokemon.created) : aux4.filter(pokemon => !pokemon.created)
+      let filterpokemonscreated = action.payload === "created"? aux4.filter(pokemon => typeof pokemon.id !== 'number') : aux4.filter(pokemon => typeof pokemon.id === 'number')
+      console.log(aux4)
+      console.log(filterpokemonscreated)
       return{
         ...state,
-        pokemons: action.payload === "All" ? aux4 : filterpokemonscreated
+        pokemons: action.payload === "All"? aux4 :  filterpokemonscreated
       }
     default:
       return {

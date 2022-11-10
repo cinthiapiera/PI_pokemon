@@ -54,5 +54,6 @@
   font-size: 0.85rem;
   padding: 0.8rem 1rem;
   border-radius: 0.4rem;
+  cursor: pointer;
   /* margin-top: 1rem; */
 }

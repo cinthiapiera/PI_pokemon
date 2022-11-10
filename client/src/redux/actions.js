@@ -9,7 +9,6 @@ export const SORT_POKEMONS_ATTACK = "SORT_POKEMONS_ATTACK";
 export const GET_POKEMON_NAME = "GET_POKEMON_NAME";
 export const GET_POKEMON_ID = "GET_POKEMON_ID";
 export const POST_POKEMON = "POST_POKEMON";
-// export const MESSAGE_ERROR = "MESSAGE_ERROR";
 
 export function getPokemons() {
   return async function (dispatch) {
@@ -20,7 +19,7 @@ export function getPokemons() {
         payload: pokemons.data
       })
     } catch (error) {
-      window.alert([error.message])
+      console.log(error.response.data.error)
     }
   }
 };
@@ -34,7 +33,7 @@ export function getTypes() {
         payload: types.data
       })
     } catch (error) {
-      window.alert([error.message])
+      console.log(error.response.data.error)
     }
   }
 }
@@ -43,13 +42,13 @@ export function getPokemonName(name) {
   return async function (dispatch) {
     try {
       const namepokemon = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
-      //console.log(namepokemon);
       return dispatch({
         type: GET_POKEMON_NAME,
         payload: namepokemon.data
       })
     } catch (error) {
-      window.alert([error.message]) 
+      alert("Dear user: "+error.response.data.error)
+      console.log(error.response.data.error)
     }
   }
 }
@@ -58,14 +57,13 @@ export function getPokemonId(id) {
   return async function (dispatch) {
     try {
       const pokemonid = await axios.get(`http://localhost:3001/pokemons/${id}`)
-      //console.log(pokemonid.data);
       return dispatch({
         type: GET_POKEMON_ID,
         payload: pokemonid.data
       })
     } catch (error) {
-      //alert("Pokemon not found")
-      window.alert([error.message])
+      alert("Dear user: "+error.response.data.error)
+      console.log(error.response.data.error)
     }
     
   }
@@ -76,11 +74,11 @@ export function postPokemon(payload) {
   return async function () {
     try {
       const create = await axios.post("http://localhost:3001/pokemons/",payload)
-      alert('se creo el pokemon')
+      alert("Dear user your Pokémon has been created!!!")
       return create;
     } catch (error) {
-      // alert('Pokemon name already exist')
-      window.alert([error.message])
+      alert("Dear user did not create your Pokémon: "+error.response.data.error)
+      console.log(error.response.data.error)
     }
 
   }

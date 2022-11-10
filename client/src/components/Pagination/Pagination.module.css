@@ -1,7 +1,7 @@
 .pagination li{
     display: inline-block;
     justify-content: center;
-    margin: 0 4px;
+    margin: 0 2px;
     text-align: center;
 }
 

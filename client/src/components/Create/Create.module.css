@@ -53,6 +53,15 @@ input {
     margin-right: 10px; */
 }
 
+.danger-error{
+    color: red;
+    font-size: 10px;
+}
+
+.border-error{
+    border: 1px solid red;
+}
+
 
 /* .selectdiv {
     position: relative;

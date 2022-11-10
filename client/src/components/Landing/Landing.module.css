@@ -8,9 +8,9 @@ main {
     display: grid;
     grid-template-columns: auto auto;
     height: 70vh;
-    align-items: center;
-    justify-content: center;
-    margin-left: 8rem;
+    align-items: end;
+    justify-content: space-evenly;
+    margin-left: 4rem;
 }
 
 main h1 {
@@ -33,6 +33,7 @@ main button {
     padding: 0.8rem 1rem;
     border-radius: 0.4rem;
     margin-top: 1rem;
+    cursor: pointer;
 }
 
 #text-side {
@@ -40,28 +41,20 @@ main button {
 }
 
 .img-side img{
-    height: 25rem;
+    height: 30rem;
 }
-
 
 /* Responsive */
 @media (min-width: 300px) and (max-width: 480px) {
-
-  * {
-    font-size: 1rem;
-  }
 
   main {
     display: grid;
     grid-template-columns: 100%;
     margin: 0 auto;
+    justify-items: center;
   }
 
-  main h2 {
-    font-size: 2.5rem;
-  }
-
-  .imgSide img{
+  .img-side img{
     height: 15rem;
   }
 }
