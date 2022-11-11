@@ -1,5 +1,22 @@
-.container {
-    align-items: center;
-    position: absolute;
+.page-container {
+  width: 500px;
+  box-shadow: 0 0 40px -10px #000;
+  margin: calc(30vh - 220px) auto;
 }
 
+.page-title p{
+    font-size: 13px;
+    font-weight: 700;
+    color: rgb(88, 87, 87);
+    text-decoration: none;
+    text-align: center;
+}
+
+.page-button-back{
+  padding: .5rem .5rem;
+  font-size: 11px;
+  color: #fff;
+  cursor: pointer;
+  background-color: hsl(0, 0%, 8%);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}

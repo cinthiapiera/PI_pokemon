@@ -1,7 +1,7 @@
 .pokeball {
     position: absolute;
-    top: calc(50% - 150px);
-    left: calc(50% - 150px);
+    top: calc(70% - 150px);
+    left: calc(60% - 150px);
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -64,8 +64,8 @@
   
 .shadow {
     position: absolute;
-    top: calc(15% + 125px);
-    left: 40%;
+    top: calc(50% + 100px);
+    left: 52%;
     width: 100px;
     height: 50px;
     background: rgba(0, 0, 0, 0.5);
