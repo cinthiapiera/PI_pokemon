@@ -73,10 +73,11 @@ class InputText extends React.Component(){
   }
 
   actualiarState(e){
-    console.log(name);
+    // console.log(name);
+    // console.log(value);
     const {name,value}= e.target;
-    console.log(value);
-    console.log(this.props.validacion(value));
+    console.log(this.props.validacion(value)); //viene de la funcion esnombre para validarlo
+    
     if(this.props.validacion(value)){
       this.setStare({
         value,
@@ -85,7 +86,7 @@ class InputText extends React.Component(){
       });
       this.props.actualiarState({
         name, value, error:false
-      })
+      })  //recuperamos el valor del inputtext y lo retornamos desde el cpmonente padre
     }else{
       this.setStare({
         value,
@@ -130,10 +131,23 @@ class CreateClass extends React.Component(){
     super(props);
     this.submit = this.submit.bind(this);
     this.actualiarState = this.actualiarState.bind(this)
+    this.state = { nombre:{ 
+      value:"",
+      error: false,
+    }}
   }
   
-  actualiarState(input){
-    
+  actualiarState(input){ //aqui es donde se recupera el json del state del componente hijo
+    // console.log(input);
+    this.state({
+      ...this.state,
+      [input.name]:{
+        value: input.value,
+        error: input.error
+      }
+    },()=>{console.log(this.state)})
+    //aqui no dara el retraso de un segundo, PERO atravez de una callback donde llamamos al nuevamente al state asi
+    //nos retornaran el state ya actulizado en tiempo real =J= solo en componetne de clase
   }
 
  //submit es un metodo de clase
@@ -149,7 +163,7 @@ class CreateClass extends React.Component(){
          label="nombre"
          name="nombre"
          placeholder="nombre"
-         validacion={this.esNombre}
+         validacion={esNombre} //funcion externa fuera del componente padre por eso se quita el this
          mensajeEror="se esperaba letras"
          actualiarState={this.actualiarState}
         />

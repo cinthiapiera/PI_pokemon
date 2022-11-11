@@ -6,7 +6,7 @@ export default function Validate(input) {
   
     if(!input.name || input.name ==="  " || !validateLetters.test(input.name))  errors.name = "Name is required to be letters and without spaces";
 
-    if(!input.image || !validateUrl.test(input.image))  errors.image = "Image is required and URL type";
+    if(!input.image || !validateUrl.test(input.image)) errors.image = "Image is required and URL type";
 
     if(!input.hp || input.hp < 0 || input.hp > 300 || !validateDigits.test(input.hp))  errors.hp = "Health Points is required and valid between 1 - 300";
 
@@ -19,6 +19,6 @@ export default function Validate(input) {
     if(!input.height || input.height < 0 || input.height > 20 || !validateDigits.test(input.height))  errors.height = "Height is required and valid between 1 - 20 m";
 
     if(!input.weight || input.weight < 0 || input.weight > 1000 || !validateDigits.test(input.weight))  errors.weight = "Weight is required and valid between  1 - 1000 kg";
-        
+
     return errors;
 }

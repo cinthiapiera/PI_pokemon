@@ -9,6 +9,7 @@ export const SORT_POKEMONS_ATTACK = "SORT_POKEMONS_ATTACK";
 export const GET_POKEMON_NAME = "GET_POKEMON_NAME";
 export const GET_POKEMON_ID = "GET_POKEMON_ID";
 export const POST_POKEMON = "POST_POKEMON";
+export const CLEAR = "CLEAR"; 
 
 export function getPokemons() {
   return async function (dispatch) {
@@ -109,5 +110,12 @@ export function filterPokemonsCreated(payload) {
   return{
     type: FILTER_POKEMONS_CREATED,
     payload
+  }
+}
+
+export function clear() {
+  return {
+    type: CLEAR,
+    payload: []
   }
 }

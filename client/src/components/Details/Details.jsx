@@ -3,19 +3,22 @@ import styles from "./Details.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPokemonId } from "../../redux/actions";
+import { getPokemonId, clear } from "../../redux/actions";
 
 
 function Details() {
   const dispatch = useDispatch()
   const pokemon = useSelector(state => state.detail)
 
-  console.log(pokemon);
+  // console.log(pokemon);
 
   const {id} = useParams()
 
   useEffect(()=>{
     dispatch(getPokemonId(id))
+    return () => {
+      dispatch(clear()); //momento de retraso , realiza un corte retornando un array []
+    };
   },[dispatch, id])
 
   return(

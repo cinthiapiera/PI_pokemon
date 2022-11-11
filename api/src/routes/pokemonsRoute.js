@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const pokemonsRoute = Router();
 const { getPokemons, createPokemon, getPokemonId } = require('./../controllers/pokemonsC');
+const { Pokemon , Type} = require('./../db');
 
 pokemonsRoute.get('/', async(req,res) => {
   try {
@@ -35,5 +36,28 @@ pokemonsRoute.post('/', async(req,res) => {
     res.status(400).send({error: error.message});
   }
 })
+
+// pokemonsRoute.put('/', async(req,res)=>{
+//   // try {
+//   const {id} = req.params
+//   const pokemon = req.body
+//   console.log(id,pokemon)
+//   const [update] = await Pokemon.update(
+//     {
+//       pokemon
+//     },
+//     {
+//       where : {
+//         id: id
+//       }
+//     }
+//   )
+//   console.log({cambiado:true},update);
+// })  
+//     res.status(201).send({cambiado:true,update});
+//   } catch (error) { 
+//     res.status(400).send({error: error.message});
+//   }
+// })
 
 module.exports = pokemonsRoute;

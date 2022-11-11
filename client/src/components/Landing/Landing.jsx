@@ -8,7 +8,7 @@ function Landing() {
     <main>
       <section className={styles['text-side']}>
         <h1>Henry<br />Pokémon</h1>
-        <p>SPA with the most complete information on pokémon</p>
+        <p>This is the most complete application for pokémon lovers. It will allow you to identify all your pokémon, manage them and created them in ways that you will never imagine. You can also see their statistics, anddata in general. The best app for any pokemaniacs out there</p>
         <Link to="/home">
           <button>Get start!</button>
         </Link>

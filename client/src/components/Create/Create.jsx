@@ -24,7 +24,6 @@ function Create() {
     types: [],
   })
 
-  
   useEffect(()=>{
     dispatch(getTypes());
   },[dispatch])
@@ -43,11 +42,15 @@ function Create() {
     }))
   }
 
-  function handleSelect(e) {
-    setInput({
-      ...input,
-      types:[...input.types, e.target.value]
-    })
+  function handleSelect(e) {  
+    if(input.types.length < 2){
+      setInput({
+        ...input,
+        types:[...input.types, e.target.value]
+      })
+    }else{
+      alert("Dear user can only choose one or two types for your Pokémon")
+    }
   }
 
   function handleDelete(e) {
@@ -74,11 +77,10 @@ function Create() {
   }
 
   return(
-    <>
-      <Link to="/home"><button>Regresar a Home</button></Link>
-      <br /><br />
+    <> 
       <form onSubmit={handleSubmit} className={styles["form"]}>
-          {/* <legend className={styles["form-legend"]}>CREATE POKEMON</legend> */}
+          <Link to="/home"><button className={styles["form-button-back"]}>Regresar a Home</button></Link>
+          <legend className={styles["form-legend"]}>CREATE POKEMO </legend>
           <label htmlFor="name">Name : </label>
           <input type="text" name="name" value={input.name} onChange={handleInputChange} className={errors.name && styles["border-error"]}/>
           {errors.name && (<p className={styles["danger-error"]}>{errors.name}</p>)}
@@ -114,29 +116,27 @@ function Create() {
           {errors.weight && (<p className={styles["danger-error"]}>{errors.weight}</p>)}
           <br />
 
-          <label htmlFor="weight">CHOOSE TWO TYPES OF POKEMON</label> 
+          <label htmlFor="weight">CHOOSE ONLY TWO TYPES</label> 
           <select name="types" onChange={handleSelect}>
             {Alltypes?.map(type => {
                 return(
-                  <option key={type.id} value={type.name} >{type.name}</option>
+                  <option key={type.id} value={type.name}>{type.name}</option>
                 )
-              })
-            }
+            })}
           </select>
-          {/* {errors.weight && (<p className={styles["danger"]}>{errors.weight}</p>)} */}
-          { input.types.map(e => {
+          {input.types.map(e => {
               return(
                 <div key={e}>
-                  <h5>{e}</h5>
-                  <button onClick={() => handleDelete(e)}>X</button>
+                  <button onClick={() => handleDelete(e)} className={styles["form-button-delete"]}>x</button><span> {e} </span>
                 </div>
               )
             })
           }
-          <div>
-          <button type="submit">SUBMIT</button>
+          <br />
+        <div>
+        <button type="submit" className={styles["form-button"]}>SUBMIT</button>
         </div>
-      </form>      
+      </form>
     </>
   )
 };

@@ -1,56 +1,49 @@
 .form {
-    width: 340px;
-    height: 640px;
-    border-radius: 8px;
-    box-shadow: 0 0 40px -10px #000;
-    margin: calc(30vh - 220px) auto;
-    padding: 20px 30px;
-    /* max-width: calc(100vw - 40px); */
-    box-sizing: border-box;
-    position: relative;
+  width: 340px;
+  height: 750px;
+  border-radius: 8px;
+  box-shadow: 0 0 40px -10px #000;
+  margin: calc(30vh - 220px) auto;
+  padding: 20px 30px;
+  max-width: calc(100vw - 40px);
+  box-sizing: border-box;
+  position: relative;
 }
 
 .form-legend{
-  margin: 5px 0;
+  margin: 3px 0;
   padding-bottom: 5px;
-  width: 180px;
+  width: 115px;
   color: rgb(63, 121, 230);
   border-bottom: 1px solid rgb(63, 121, 230);;
 }
 
 label:before{
-    content: attr(type);
-    display: block;
-    margin: 20px 0 0;
-    font-size: 12px;
-    color: #5a5a5a;
+  content: attr(type);
+  display: block;
+  margin: 20px 0 0;
+  font-size: 12px;
+  color: #5a5a5a;
 }
 
 input {
-    width: 60%;
-    padding: 5px;
-    box-sizing: border-box;
-    background: none;
-    /* outline: none;
-    resize: none; */
-    border: 0;
-    transition: all 0.3s;
-    border-bottom: 1px solid #bebed2;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  background: none;
+  border: 0;
+  transition: all 0.3s;
+  border-bottom: 1px solid #bebed2;
 }
 
 .form select {
-    appearance: none;
-    flex: 1 0 auto;
-    padding: 10px;
-    border-radius: 0;
-    border: 0;
-    background: transparent;
-    /* border-bottom: 1px solid $yankeesblue;
-    padding: 5px 0;
-    font-size: 18px;
-    font-weight: 300;
-    outline: none;
-    margin-right: 10px; */
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .danger-error{
@@ -62,6 +55,32 @@ input {
     border: 1px solid red;
 }
 
+.form-button-back{
+  padding: .5rem .5rem;
+  font-size: 11px;
+  color: #fff;
+  cursor: pointer;
+  background-color: hsl(0, 0%, 8%);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.form-button{
+  background-color: black;
+  color: white;
+  padding: 5px;
+  margin: 10px 40%;
+}
+
+.form-button-delete{
+  background-color: black;
+  color: white;
+}
+
+/* .form-button-disabled{
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 5px;
+  margin: 10px 40%;
+} */
 
 /* .selectdiv {
     position: relative;

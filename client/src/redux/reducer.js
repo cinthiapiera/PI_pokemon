@@ -1,4 +1,4 @@
-import { GET_POKEMONS, GET_TYPES, GET_POKEMON_NAME, GET_POKEMON_ID, FILTER_POKEMONS_TYPES, FILTER_POKEMONS_CREATED, SORT_POKEMONS_ALPHA, SORT_POKEMONS_ATTACK, POST_POKEMON } from "./actions";
+import { GET_POKEMONS, GET_TYPES, GET_POKEMON_NAME, GET_POKEMON_ID, FILTER_POKEMONS_TYPES, FILTER_POKEMONS_CREATED, SORT_POKEMONS_ALPHA, SORT_POKEMONS_ATTACK, POST_POKEMON, CLEAR} from "./actions";
 
 const initialState = {
   pokemons: [],
@@ -80,6 +80,11 @@ function reducer(state = initialState, action) {
       return{
         ...state,
         pokemons: action.payload === "All"? aux4 :  filterpokemonscreated
+      }
+    case CLEAR:
+      return{
+        ...state,
+        detail: action.payload
       }
     default:
       return {
