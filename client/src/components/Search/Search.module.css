@@ -72,6 +72,3 @@ input:not(:placeholder-shown) ~ .reset {
   opacity: 1;
   visibility: visible;
 }
-
-
-

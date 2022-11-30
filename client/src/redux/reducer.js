@@ -2,7 +2,7 @@ import { GET_POKEMONS, GET_TYPES, GET_POKEMON_NAME, GET_POKEMON_ID, FILTER_POKEM
 
 const initialState = {
   pokemons: [],
-  auxpokemons: [], //state auxiliar con todos los pokemones (40)
+  auxpokemons: [],
   types: [],
   detail: []
 }
@@ -70,13 +70,11 @@ function reducer(state = initialState, action) {
       }
       return{
         ...state,
-        pokemons: filterpokemonstypes //solo contiene los filtrados en el estado (pokemons) que siempre se renderiza
+        pokemons: filterpokemonstypes
       }
     case FILTER_POKEMONS_CREATED:
       const aux4 = state.auxpokemons
       let filterpokemonscreated = action.payload === "created"? aux4.filter(pokemon => typeof pokemon.id !== 'number') : aux4.filter(pokemon => typeof pokemon.id === 'number')
-      console.log(aux4)
-      console.log(filterpokemonscreated)
       return{
         ...state,
         pokemons: action.payload === "All"? aux4 :  filterpokemonscreated

@@ -20,15 +20,13 @@ function Home() {
 
   /*paginado */
   const [currentPage, setCurrentPage] = useState(1);
-  //console.log(currentPage, setCurrentPage) // 1,2,3,4
   const [pokemonsPerPage] = useState(12)
 
   const indexLastPokemons = currentPage * pokemonsPerPage //12
   const indexFirstPokemons = indexLastPokemons - pokemonsPerPage //0
   const currentPokemons = Allpokemons.slice(indexFirstPokemons,indexLastPokemons)
-  //console.log(currentPokemons) 12 -12 -12 -4
 
-  const [ /*order*/, setOrder] = useState(""); //Para modificar el estado local y me ayude al renderizado
+  const [ /*order*/, setOrder] = useState("");
 
   useEffect(()=>{
     dispatch(getPokemons());
@@ -40,14 +38,13 @@ function Home() {
 
   /* Resetea todos los pokemones */
   function handlerReset(e) {
-    e.preventDefault(); //para que no se recargue la pagina
+    e.preventDefault(); 
     setCurrentPage(1)
     dispatch(getPokemons())
   }
 
   /* Paginado */
   const paginated = (pageNumber) => {
-    //console.log(pageNumber) 1-2-3-4
     setCurrentPage(pageNumber)
   }
 
@@ -55,7 +52,7 @@ function Home() {
   function handlerSortAlpha(e) {
     e.preventDefault();
     dispatch(sortPokemonsAlphabetic(e.target.value))
-    setCurrentPage(1) //setear el ordenamineto en la primera pagina
+    setCurrentPage(1)
     setOrder(`${e.target.value}`);
   }
 
@@ -67,14 +64,11 @@ function Home() {
     setOrder(`${e.target.value}`);
   }
 
-  //---------------------------------------------------------
-
   /* Filtrado por tipo de pokemon (2) */
   function handlerFilterTypes(e){
     e.preventDefault();
     dispatch(filterPokemonsTypes(e.target.value))
     setCurrentPage(1)
-    //e.target.value es el valor del select que captura
   }
 
   /* Filtrado por creado(DB) o existente(API) */
@@ -94,7 +88,6 @@ function Home() {
         <div className={styles["grid-item"]}>
           <Search />
         </div>
-        {/* el value nos sirve para indicar que action se debe realizar al escoger una opcion */}
         <div className={styles["grid-item"]}>
           <div className={styles["box"]}>
             <label>Order alphabetic: </label>

@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_TYPES = "GET_TYPES";
 export const FILTER_POKEMONS_TYPES = "FILTER_POKEMONS_TYPES";

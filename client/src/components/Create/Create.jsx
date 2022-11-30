@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTypes, postPokemon } from "../../redux/actions";
 import Validate from "./Validate";
 
-
 function Create() {
 
   const dispatch = useDispatch();
@@ -28,9 +27,6 @@ function Create() {
     dispatch(getTypes());
   },[dispatch])
 
-  //e.target.name (cajita del input) es el elemento que dispara el evento que tiene un atributo name
-  //e = event , target = disparador
-  //e.target.value , es elemento que dispara el evento con el valor ingresado
   function handleInputChange(e) {
     setInput({
       ...input,
@@ -61,7 +57,7 @@ function Create() {
   }
 
   function handleSubmit(e) {
-    e.preventDefault(); //para que no recargue la pagina al momento de submitear que por defecrto este evetno submit realiza
+    e.preventDefault();
     dispatch(postPokemon(input))
     setInput({
       name: "",
@@ -80,7 +76,8 @@ function Create() {
     <> 
       <form onSubmit={handleSubmit} className={styles["form"]}>
           <Link to="/home"><button className={styles["form-button-back"]}>Regresar a Home</button></Link>
-          <legend className={styles["form-legend"]}>CREATE POKEMO </legend>
+          <br/><br/>
+          <legend className={styles["form-legend"]}>CREATE POKEMON </legend>
           <label htmlFor="name">Name : </label>
           <input type="text" name="name" value={input.name} onChange={handleInputChange} className={errors.name && styles["border-error"]}/>
           {errors.name && (<p className={styles["danger-error"]}>{errors.name}</p>)}

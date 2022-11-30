@@ -1,7 +1,6 @@
 import React from "react";
 import styles from './Cards.module.css';
 
-
 function Cards({id, name, image, attack, types}) {
   return(
     <div className={styles["container"]}>

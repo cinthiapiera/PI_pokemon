@@ -10,20 +10,18 @@ function Details() {
   const dispatch = useDispatch()
   const pokemon = useSelector(state => state.detail)
 
-  // console.log(pokemon);
-
   const {id} = useParams()
 
   useEffect(()=>{
     dispatch(getPokemonId(id))
     return () => {
-      dispatch(clear()); //momento de retraso , realiza un corte retornando un array []
+      dispatch(clear());
     };
   },[dispatch, id])
 
   return(
     <>
-        { //simepre se pregunta si hay algo dentro del array o esta vacio (!!negacion): pokemon && si es 0 me da falso pero si contiene algo me da true
+        { 
           pokemon &&
           <div className={styles["blog-container"]}>
             <Link to="/home"><button className={styles["blog-button"]}>Back to home</button></Link>
