@@ -18,7 +18,6 @@ const dataApi = async() => {
           attack: pokemon.stats[1].base_stat, 
         }
       })
-      // console.log(pokemons);
       // throw Error('error voluntario')
       return globalThis.pokeData = pokemons
 }
