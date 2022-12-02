@@ -23,7 +23,7 @@ const { getTypes } = require('./src/controllers/typesC');
 const port = process.env.PORT || 3001;
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {  
+conn.sync({ force: false }).then(() => {  
   server.listen(port, () => {
     getTypes()
     console.log(`Server listening ${port}`); // eslint-disable-line no-console
