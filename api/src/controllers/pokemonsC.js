@@ -25,13 +25,13 @@ const dataApi = async() => {
     let apiInfo = apiUrl.data.results.map( async (e) => await axios.get(e.url)) 
     let pokeInfo = await axios.all(apiInfo)
     .then(respuesta => 
-        respuesta.map( p => { 
+        respuesta.map( pokemon => { 
             return  {
-                id: p.data.id,
-                name: p.data.name,
-                image: p.data.sprites.other.home.front_default,
-                types: p.data.types.map(tp =>{return {name: tp.type.name}}),
-                attack: p.data.stats[1].base_stat,
+                id: pokemon.data.id,
+                name: pokemon.data.name,
+                image: pokemon.data.sprites.other.home.front_default,
+                types: pokemon.data.types.map(tp =>{return {name: tp.type.name}}),
+                attack: pokemon.data.stats[1].base_stat,
             }
         })
     )
