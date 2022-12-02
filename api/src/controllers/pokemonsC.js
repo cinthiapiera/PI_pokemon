@@ -5,7 +5,7 @@ const dataApi = async() => {
       const pokemonsApi = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40&offset=0')
       const urlPokemons = pokemonsApi.data.results
       let dataPokemons=[]
-      for (let i = 0; i < urlPokemons.length; i++){
+      for (let i = 0; i <= urlPokemons.length; i++){
           let aux = await axios.get(`${urlPokemons[i].url}`)
           dataPokemons.push(aux.data) 
       }
