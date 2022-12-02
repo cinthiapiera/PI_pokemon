@@ -6,8 +6,8 @@ const dataApi = async() => {
       let urlPokemons = pokemonsApi.data.results
       let dataPokemons=[]
       // console.log(urlPokemons.length);
-      for(let i=0; i<40; i++){
-          let aux = await axios.get(`${urlPokemons[i].url}`)
+      for(let i=0; i<urlPokemons.length; i++){
+          let aux = await axios.get(urlPokemons[i].url)//`${urlPokemons[i].url}`
           dataPokemons.push(aux.data) 
       }
       let pokemons = dataPokemons.map(pokemon => {
