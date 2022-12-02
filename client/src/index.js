@@ -11,8 +11,8 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 
 dotenv.config();
-axios.defaults.baseURL = 'http://localhost:3001';
-// axios.defaults.baseURL = 'pipokemon-production.up.railway.app';
+// axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'pipokemon-production.up.railway.app';
 
 ReactDOM.render(
     <Provider store={store}>
