@@ -2,10 +2,11 @@ const axios = require('axios');
 const { Pokemon, Type } = require('./../db');
 
 const dataApi = async() => {
-      const pokemonsApi = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40&offset=0')
-      const urlPokemons = pokemonsApi.data.results
+      let pokemonsApi = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40&offset=0')
+      let urlPokemons = pokemonsApi.data.results
       let dataPokemons=[]
-      for (let i = 0; i <= urlPokemons.length; i++){
+      // console.log(urlPokemons.length);
+      for(let i=1; i<=urlPokemons.length; i++){
           let aux = await axios.get(`${urlPokemons[i].url}`)
           dataPokemons.push(aux.data) 
       }
