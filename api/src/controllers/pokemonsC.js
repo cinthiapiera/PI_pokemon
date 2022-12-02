@@ -22,10 +22,10 @@ const dataApi = async() => {
       // })
       // throw Error('error voluntario')
     const apiUrl = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40')
-    const apiInfo = apiUrl.data.results.map( async (e) => await axios.get(e.url)) 
+    const apiInfo = apiUrl.data.results?.map( async (e) => await axios.get(e.url)) 
     const pokeInfo = await axios.all(apiInfo)
     .then(respuesta => 
-        respuesta.map( p => { 
+        respuesta?.map( p => { 
             return  {
                 id: p.data.id,
                 name: p.data.name,
