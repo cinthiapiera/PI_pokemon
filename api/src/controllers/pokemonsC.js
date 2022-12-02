@@ -2,25 +2,40 @@ const axios = require('axios');
 const { Pokemon, Type } = require('./../db');
 
 const dataApi = async() => {
-      let pokemonsApi = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40&offset=0')
-      let urlPokemons = pokemonsApi.data.results
-      let dataPokemons=[]
-      // console.log(urlPokemons.length);
-      for(let i=0; i<urlPokemons.length; i++){
-          let aux = await axios.get(urlPokemons[i].url)//`${urlPokemons[i].url}`
-          dataPokemons.push(aux.data) 
-      }
-      let pokemons = dataPokemons.map(pokemon => {
-        return{
-          id: pokemon.id,
-          name: pokemon.name,
-          image: pokemon.sprites.other.home.front_default,
-          types: pokemon.types.map(type => { return {name: type.type.name}}),
-          attack: pokemon.stats[1].base_stat, 
-        }
-      })
+
+      // let pokemonsApi = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40&offset=0')
+      // let urlPokemons = pokemonsApi.data.results
+      // let dataPokemons=[]
+      // // console.log(urlPokemons.length);
+      // for(let i=0; i<urlPokemons.length; i++){
+      //     let aux = await axios.get(`${urlPokemons[i].url}`)
+      //     dataPokemons.push(aux.data) 
+      // }
+      // let pokemons = dataPokemons.map(pokemon => {
+      //   return{
+      //     id: pokemon.id,
+      //     name: pokemon.name,
+      //     image: pokemon.sprites.other.home.front_default,
+      //     types: pokemon.types.map(type => { return {name: type.type.name}}),
+      //     attack: pokemon.stats[1].base_stat, 
+      //   }
+      // })
       // throw Error('error voluntario')
-      return globalThis.pokeData = pokemons
+    const apiUrl = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40')
+    const apiInfo = apiUrl.data.results.map( async (e) => await axios.get(e.url)) 
+    const pokeInfo = await axios.all(apiInfo)
+    .then(respuesta => 
+        respuesta.map( p => { 
+            return  {
+                id: p.data.id,
+                name: p.data.name,
+                image: p.data.sprites.other.home.front_default,
+                types: p.data.types.map(tp =>{return {name: tp.type.name}}),
+                attack: p.data.stats[1].base_stat,
+            }
+        })
+    )
+      return globalThis.pokeData = pokeInfo
 }
 dataApi()
 
