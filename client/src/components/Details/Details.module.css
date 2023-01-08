@@ -80,3 +80,34 @@
   background-color: hsl(0, 0%, 8%);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
+
+/* Responsive */
+@media (min-width: 300px) and (max-width: 480px) {
+
+  .blog-container {
+    width: 350px;
+    height: 700px;
+  }
+
+  .left {
+    height: 270px;
+    margin-left: 5px;
+    position: inherit;
+  }
+  
+  .left img {
+    margin-left: 20px;
+    min-width: 10rem;
+    margin-top: 30px;
+  }
+  
+  .right {
+    margin-left: -200px;
+    background-color: transparent;
+  }
+
+  .blog-info {
+    margin-left: 225px;
+  }
+
+}

@@ -8,7 +8,7 @@ import { getPokemons, getTypes, filterPokemonsTypes, filterPokemonsCreated, sort
 
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
-import Search from "../Search/Search";
+// import Search from "../Search/Search";
 import Pagination from "../Pagination/Pagination";
 import Loading from "../Loading/Loading";
 
@@ -20,7 +20,7 @@ function Home() {
 
   /*paginado */
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsPerPage] = useState(12)
+  const [pokemonsPerPage] = useState(15)
 
   const indexLastPokemons = currentPage * pokemonsPerPage //12
   const indexFirstPokemons = indexLastPokemons - pokemonsPerPage //0
@@ -85,9 +85,9 @@ function Home() {
         <div className={styles["grid-item"]}>
           <button className={styles["button-reset"]} onClick={e=>handlerReset(e)}>Reset Pokemons</button>
         </div>
-        <div className={styles["grid-item"]}>
+        {/* <div className={styles["grid-item"]}>
           <Search />
-        </div>
+        </div> */}
         <div className={styles["grid-item"]}>
           <div className={styles["box"]}>
             <label>Order alphabetic: </label>
