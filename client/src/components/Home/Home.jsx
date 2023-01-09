@@ -8,7 +8,6 @@ import { getPokemons, getTypes, filterPokemonsTypes, filterPokemonsCreated, sort
 
 import Cards from "../Cards/Cards";
 import NavBar from "../NavBar/NavBar";
-// import Search from "../Search/Search";
 import Pagination from "../Pagination/Pagination";
 import Loading from "../Loading/Loading";
 
@@ -85,9 +84,6 @@ function Home() {
         <div className={styles["grid-item"]}>
           <button className={styles["button-reset"]} onClick={e=>handlerReset(e)}>Reset Pokemons</button>
         </div>
-        {/* <div className={styles["grid-item"]}>
-          <Search />
-        </div> */}
         <div className={styles["grid-item"]}>
           <div className={styles["box"]}>
             <label>Order alphabetic: </label>

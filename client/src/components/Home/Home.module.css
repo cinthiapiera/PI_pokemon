@@ -57,3 +57,9 @@
   cursor: pointer;
   /* margin-top: 1rem; */
 }
+
+@media (min-width: 300px) and (max-width: 680px) {
+  .grid-container {
+    grid-gap: 0px;
+  }
+}

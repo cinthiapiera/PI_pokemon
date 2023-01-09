@@ -13,9 +13,13 @@ li {
   list-style-type: none;  
 }
 
+ul{
+  padding-inline: 10px;
+}
+
 nav {
-  margin: 0 1.5rem 1.5rem 1.5rem;
-  justify-content: space-between;
+  margin: 1.5rem 1.5rem 1.5rem 1.5rem;
+  justify-content: space-around;
 }
 
 .menu-items li {
@@ -26,4 +30,47 @@ nav {
   border: 2px solid rgb(254, 219, 57);
   padding: 0.8rem 0.8rem;
   border-radius: 0.3rem;
+}
+
+/* Responsive */
+@media (min-width: 680px) and (max-width: 1024px) {
+
+  .logo{
+    text-align: initial;
+  }
+
+  .nav{
+    margin: 1rem 1rem 1rem 1rem;
+    justify-content: space-around;
+  }
+
+  .menu-items li {
+    margin-right: 0.5rem;
+    width: max-content;
+  }
+
+  ul{
+    padding-inline: 0px;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 680px) {
+
+  .logo{
+    text-align: center;
+  }
+
+  .nav{
+    margin: 0rem;
+    justify-content: center;
+  }
+
+  nav,
+  .menu-items {
+    display: block;
+  }
+  
+  .menu-items li {
+    margin-right: 0;
+  }
 }

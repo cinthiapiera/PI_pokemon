@@ -1,4 +1,3 @@
-/* Main */
 * {
     font-family: "Epilogue", sans-serif;
     font-size: 0.9rem;
@@ -46,10 +45,18 @@ main button {
 }
 
 /* Responsive */
-@media (min-width: 300px) and (max-width: 480px) {
-
+@media (min-width: 680px) and (max-width: 1024px) {
   main {
-    display: grid;
+    align-items: self-end;
+  }
+
+  .img-side img{
+    height: 20rem;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 680px) {
+  main {
     grid-template-columns: 100%;
     margin: 0 auto;
     justify-items: center;

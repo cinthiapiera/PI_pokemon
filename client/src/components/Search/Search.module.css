@@ -72,3 +72,9 @@ input:not(:placeholder-shown) ~ .reset {
   opacity: 1;
   visibility: visible;
 }
+
+@media (min-width: 300px) and (max-width: 680px) {
+  .form{
+    width: auto;
+  }
+}
