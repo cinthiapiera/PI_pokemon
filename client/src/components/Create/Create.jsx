@@ -75,9 +75,12 @@ function Create() {
   return(
     <> 
       <form onSubmit={handleSubmit} className={styles["form"]}>
-          <Link to="/home"><button className={styles["form-button-back"]}>Regresar a Home</button></Link>
-          <br/><br/>
-          <legend className={styles["form-legend"]}>CREATE POKEMON </legend>
+          <div className={styles["form-header"]}>
+            <legend className={styles["form-legend"]}>Customize Your Pokémon </legend>
+            <Link to="/home">
+              <button className={styles["form-button-back"]}>Go Back</button>
+            </Link>
+          </div>
           <label htmlFor="name">Name : </label>
           <input type="text" name="name" value={input.name} onChange={handleInputChange} className={errors.name && styles["border-error"]}/>
           {errors.name && (<p className={styles["danger-error"]}>{errors.name}</p>)}
@@ -131,7 +134,7 @@ function Create() {
           }
           <br />
         <div>
-        <button type="submit" className={styles["form-button"]}>SUBMIT</button>
+        <button type="submit" className={styles["form-button"]}>Submit</button>
         </div>
       </form>
     </>

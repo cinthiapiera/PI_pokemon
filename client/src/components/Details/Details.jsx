@@ -24,7 +24,7 @@ function Details() {
         { 
           pokemon &&
           <div className={styles["blog-container"]}>
-            <Link to="/home"><button className={styles["blog-button"]}>Back to home</button></Link>
+            <Link to="/home"><button className={styles["blog-button"]}>Go Back</button></Link>
             <div className={styles["left"]}>
               <img src={pokemon.image} alt={`${pokemon.name} pokemon`} />
             </div>

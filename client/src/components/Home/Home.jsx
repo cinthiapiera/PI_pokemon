@@ -82,7 +82,7 @@ function Home() {
       <NavBar />
       <div className={styles["grid-container"]}>
         <div className={styles["grid-item"]}>
-          <button className={styles["button-reset"]} onClick={e=>handlerReset(e)}>Reset Pokemons</button>
+          <button className={styles["button-reset"]} onClick={e=>handlerReset(e)}>Clear Filters</button>
         </div>
         <div className={styles["grid-item"]}>
           <div className={styles["box"]}>
