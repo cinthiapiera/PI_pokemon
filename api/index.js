@@ -25,7 +25,11 @@ const port = process.env.PORT || 3001;
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {  
   server.listen(port, () => {
-    getTypes()
-    console.log(`Server listening ${port}`); // eslint-disable-line no-console
+    try {
+      getTypes()
+      console.log(`Server listening ${port}`);
+    } catch (error) {
+      console.error('Error in getTypes():', error);
+    } // eslint-disable-line no-console
   });
 });

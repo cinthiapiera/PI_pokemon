@@ -20,7 +20,6 @@ const dataApi = async() => {
       //     attack: pokemon.stats[1].base_stat, 
       //   }
       // })
-      // throw Error('error voluntario')
     let apiUrl = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151')
     const apiInfo = apiUrl.data.results.map(e => axios.get(e.url)) 
     let pokeInfo = await axios.all(apiInfo)
