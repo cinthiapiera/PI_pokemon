@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/PI_pokemon/static/css/main.00293a51.chunk.css",
+    "main.js": "/PI_pokemon/static/js/main.63f68aa1.chunk.js",
+    "main.js.map": "/PI_pokemon/static/js/main.63f68aa1.chunk.js.map",
+    "runtime-main.js": "/PI_pokemon/static/js/runtime-main.af53108f.js",
+    "runtime-main.js.map": "/PI_pokemon/static/js/runtime-main.af53108f.js.map",
+    "static/js/2.84a005b5.chunk.js": "/PI_pokemon/static/js/2.84a005b5.chunk.js",
+    "static/js/2.84a005b5.chunk.js.map": "/PI_pokemon/static/js/2.84a005b5.chunk.js.map",
+    "static/js/3.32b116f8.chunk.js": "/PI_pokemon/static/js/3.32b116f8.chunk.js",
+    "static/js/3.32b116f8.chunk.js.map": "/PI_pokemon/static/js/3.32b116f8.chunk.js.map",
+    "index.html": "/PI_pokemon/index.html",
+    "static/css/main.00293a51.chunk.css.map": "/PI_pokemon/static/css/main.00293a51.chunk.css.map",
+    "static/js/2.84a005b5.chunk.js.LICENSE.txt": "/PI_pokemon/static/js/2.84a005b5.chunk.js.LICENSE.txt",
+    "static/media/404page.78bbdb22.png": "/PI_pokemon/static/media/404page.78bbdb22.png",
+    "static/media/index.css": "/PI_pokemon/static/media/background_app.3b70c8e1.png",
+    "static/media/landing_pokemons.92ee798d.png": "/PI_pokemon/static/media/landing_pokemons.92ee798d.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.af53108f.js",
+    "static/js/2.84a005b5.chunk.js",
+    "static/css/main.00293a51.chunk.css",
+    "static/js/main.63f68aa1.chunk.js"
+  ]
+}
