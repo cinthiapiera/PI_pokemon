@@ -10,7 +10,8 @@ import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
 // axios.defaults.baseURL = 'http://localhost:3001';
-axios.defaults.baseURL = 'https://servidor-poke-cqvl.onrender.com';
+// axios.defaults.baseURL = 'https://servidor-poke-cqvl.onrender.com';
+axios.defaults.baseURL = 'https://pacheqwdblmpjmbcucoc.supabase.co';
 
 ReactDOM.render(
     <Provider store={store}>
