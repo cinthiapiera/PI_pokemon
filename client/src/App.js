@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Switch>
-        <Route exact path="/"><Landing /></Route>
+        <Route exact path="/PI_pokemon"><Landing /></Route>
         <Route exact path="/home"><Home /></Route>
         <Route exact path="/create"><Create /></Route>
         <Route exact path="/pokemon/:id"><Details /></Route>
